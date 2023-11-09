@@ -45,12 +45,12 @@ public class CloudVendorService implements CloudVendorServiceInterface{
 
     @Override
     public String deleteCloudVendor(String vendorId) {
-        boolean cloudVendorDoesNotExist = cloudVendorRepository.findById(vendorId).isEmpty();
-
-        if(cloudVendorDoesNotExist)
-            throw new CloudVendorNotFoundException("Requested Cloud vendor does not exist");
-
         cloudVendorRepository.deleteById(vendorId);
         return "Success";
+    }
+
+    @Override
+    public List<CloudVendor> getByVendorName(String vendorName) {
+        return cloudVendorRepository.findByVendorName(vendorName);
     }
 }
